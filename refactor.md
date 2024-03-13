@@ -1,7 +1,7 @@
 ### Refactoring Code
 ## see below for some changes to improve code readability and optimize performance 
 
-# client/src/utils/formatDate.js
+## client/src/utils/formatDate.js
 ```javascript
 Separate formatDateTime(input) into three different parts for clarity and readability:
     - function formatTime(date)
@@ -61,9 +61,10 @@ To:
     timeAgo = formatCommentDate(createdAt);
     const likeCounts = likes.length;
     commentsCount = comments.length;
-```
+
 Declare a local constant:
     const FaStyle = "group-hover:bg-opacity-20 p-3 cursor-pointer rounded-full  group-hover:bg-[#F91880]"
+```
 
 First of all, I delete certain part of some import statements because some packages are imported yet never used. This cleans up the space and gives better readability. Furthermore, when dealing with components, it is always a good strategies to deconstructure the props for easier reading and less complex code structure. Last but not least, I declare a constant FaStyle to replace the VERY LONG css styling locally, which is "group-hover:bg-opacity-20 p-3 cursor-pointer rounded-full  group-hover:bg-[#F91880]",
 and it significantly improves the readability. 
