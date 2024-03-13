@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useGetPostQuery, useInteractToPostMutation } from './postSlice';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   FaArrowLeft,
@@ -18,7 +18,6 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-  PopoverClose,
 } from '@/components/ui/popover';
 import EditPopover from '@/src/comp/EditPopover';
 import DeletePopover from '@/src/comp/DeletePopover';
@@ -45,19 +44,21 @@ const Post = () => {
   let commentsCount;
   let commentsOnPost;
   if (isSuccess) {
-    const likeCounts = post.likes.length;
-    commentsCount = post.comments.length;
+    // modify right here: deconstructuring post 
+    const {likes, comments, userId} = post;
+    const likeCounts = likes.length;
+    commentsCount = comments.length;
 
-    commentsOnPost = post.comments.map((comment) => (
+    commentsOnPost = comments.map((comment) => (
       <Comment
         key={comment._id}
         comment={comment}
         currentUserId={userId}
         postId={postId}
-        postUserId={post.userId}
+        postUserId={userId}
       />
     ));
-    const userLikeThePost = post.likes.findIndex(
+    const userLikeThePost = likes.findIndex(
       (likeUserId) => likeUserId === userId
     );
 
@@ -112,7 +113,7 @@ const Post = () => {
             {post?.content ? <p className="text-lg">{post.content}</p> : null}
             {post?.createdAt ? (
               <p className="text-slate-500 text-sm">
-                {formatDateTime(post.createdAt)}
+                {formatDateTime(createdAt)}
               </p>
             ) : null}
           </div>
