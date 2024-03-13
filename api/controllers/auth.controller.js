@@ -5,3 +5,5 @@ export const signupController = (req, res) => {
   // const emailExist = User.find({ email });
   res.sendStatus(201);
 };
+
+// looks good 

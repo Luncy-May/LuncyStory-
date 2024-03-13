@@ -17,3 +17,4 @@ const _404 = () => {
 };
 
 export default _404;
+// looks good!

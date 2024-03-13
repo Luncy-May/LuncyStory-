@@ -1,15 +1,13 @@
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { FaHeart, FaRegComment, FaRegHeart } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
-  selectPostById,
   useGetPostQuery,
   useInteractToPostMutation,
 } from './postSlice';
 import { formatCommentDate } from '@/src/utils/formatDate';
-
+// modify import statements
 const PostExcerpt = ({ postId }) => {
   const { data: post, isSuccess } = useGetPostQuery(postId);
   const nav = useNavigate();
@@ -19,17 +17,19 @@ const PostExcerpt = ({ postId }) => {
   let commentsCount;
   let timeAgo;
   if (isSuccess) {
-    const createdAt = post.createdAt;
+    // Modify right here
+    const { createdAt, likes, comments} = post;
     timeAgo = formatCommentDate(createdAt);
-    const likeCounts = post.likes.length;
-    commentsCount = post.comments.length;
+    const likeCounts = likes.length;
+    commentsCount = comments.length;
     const userLikeThePost = post.likes.findIndex(
       (likeUserId) => likeUserId === userId
     );
+    const FaStyle = "group-hover:bg-opacity-20 p-3 cursor-pointer rounded-full group-hover:bg-[#F91880]";
     if (userLikeThePost === -1) {
       heartReact = (
         <>
-          <div className="group-hover:bg-opacity-20 p-3 cursor-pointer rounded-full group-hover:bg-[#F91880]">
+          <div className={FaStyle}>
             <FaRegHeart className="group-hover:text-[#F91880]" />
           </div>
           <p className="group-hover:text-[#F91880]">{likeCounts}</p>
@@ -38,7 +38,7 @@ const PostExcerpt = ({ postId }) => {
     } else {
       heartReact = (
         <>
-          <div className="group-hover:bg-opacity-20 p-3 cursor-pointer rounded-full group-hover:bg-[#F91880]">
+          <div className={FaStyle}>
             <FaHeart className="text-[#F91880]" />
           </div>
           <p className="text-[#F91880]">{likeCounts}</p>

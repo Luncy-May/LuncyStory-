@@ -22,7 +22,7 @@ export const getPost = async (req, res, next) => {
     res.sendStatus(500);
   }
 };
-
+// looks good 
 export const interactToPost = async (req, res, next) => {
   const { userId, toUpdateContent } = req.body;
   const { id: postId } = req.params;
