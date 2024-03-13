@@ -2,24 +2,33 @@
 ## see below for some changes to improve code readability and optimize performance 
 
 # client/src/utils/formatDate.js
-Separate formatDateTime(input) into three different parts for clarity and readability:
-    - function formatTime(date)
-    - function formatDate(date)
-    - export default function formatDateTime(date)
-The method formatDateTime calls formatTime and formatDate
+//Separate formatDateTime(input) into three different parts for clarity and readability:
+//    - function formatTime(date)
+//    - function formatDate(date)
+//    - export default function formatDateTime(date)
+//The method formatDateTime calls formatTime and formatDate
 
-Combine the conditional statements together using one if followed by else if
+//Combine the conditional statements together using one if followed by else if
 
-Comment out const timeDifferenceInWeeks = Math.floor(timeDifferenceInDays / 7);
-because it is not needed
+//Comment out const timeDifferenceInWeeks = Math.floor(timeDifferenceInDays / 7);
+//because it is not needed
 <br>
-I chose to separate date and time because based on the principle that components make React more flexible and user-friendly, I prefer to view "date" and "time" as two separate components, and the big component "DateTime" uses "date" and "time" as its sub-components. By designing this way, if there is any future update in algorithms or styling, it would be easier to make respective changes instead of mixing everything together. 
-Furthermore, it is always a good practice to combine conditional statements (if applicable with similar conditional cases) because programmers can easily debug which one of the statement has problem. 
-Furthermore, timeDifferenceInWeeks is not declared but not used in the function, so it should be commented out (not deleted in case for future use, but not right now)
+//I chose to separate date and time because based on the principle that components make
+//React more flexible and user-friendly, I prefer to view "date" and "time" as two separate 
+//components, and the big component "DateTime" uses "date" and "time" as its 
+//sub-components. By designing this way, if there is any future update in algorithms or 
+//styling, it would be easier to make respective changes instead of mixing everything 
+//together. 
+
+//Furthermore, it is always a good practice to combine conditional statements (if 
+//applicable with similar conditional cases) because programmers can easily debug which one 
+//of the statement has problem. 
+//Furthermore, timeDifferenceInWeeks is not declared but not used in the function, so it 
+//should be commented out (not deleted in case for future use, but not right now)
 
 ## client/src/features/posts/PostExcerpt.jsx
-Change:
-    import { Link, useNavigate } from 'react-router-dom';
+//Change:
+//    import { Link, useNavigate } from 'react-router-dom';
 To:
     import { useNavigate } from 'react-router-dom';
 
